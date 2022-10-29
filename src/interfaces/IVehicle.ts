@@ -9,9 +9,9 @@ export interface IVehicle {
 }
 
 export const VehicleZodSchema = z.object({
-  model: z.string(),
-  year: z.number(),
-  color: z.string(),
+  model: z.string().min(3),
+  year: z.number().gte(1900).lte(2022),
+  color: z.string().min(3),
   status: z.boolean().optional(),
   buyValue: z.number(),
 });
