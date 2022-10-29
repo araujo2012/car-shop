@@ -9,8 +9,8 @@ export default class FrameController {
     req: Request,
     res: Response<ICar>,
   ) {
-    const results = await this._service.create(req.body);
-    return res.status(201).json(results);
+    const result = await this._service.create(req.body);
+    return res.status(201).json(result);
   }
 
   public async readOne(
@@ -27,5 +27,21 @@ export default class FrameController {
   ) {
     const result = await this._service.read();
     return res.status(200).json(result);
+  }
+
+  public async update(
+    req: Request,
+    res: Response<ICar>,
+  ) {
+    const result = await this._service.update(req.params.id, req.body) as ICar;
+    return res.status(200).json(result);
+  }
+
+  public async delete(
+    req: Request,
+    res: Response<ICar>,
+  ) {
+    const result = await this._service.delete(req.params.id) as ICar;
+    return res.status(204).json(result);
   }
 }
