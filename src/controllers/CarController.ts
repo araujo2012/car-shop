@@ -9,9 +9,7 @@ export default class FrameController {
     req: Request,
     res: Response<ICar>,
   ) {
-    const { material, color } = req.body;
-    const frame = { material, color };
-    const results = await this._service.create(frame);
+    const results = await this._service.create(req.body);
     return res.status(201).json(results);
   }
 
