@@ -7,6 +7,6 @@ export interface ICar extends IVehicle {
 }
 
 export const CarZodSchema = VehicleZodSchema.extend({
-  doorsQty: z.number(),
-  seatsQty: z.number(),
+  doorsQty: z.number().gte(2).lte(4),
+  seatsQty: z.number().gte(2).lte(7),
 });
