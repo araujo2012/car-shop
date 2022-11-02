@@ -2,7 +2,7 @@ import * as sinon from 'sinon';
 import chai from 'chai';
 import CarService from '../../../services/CarService';
 import CarModel from '../../../models/CarModel';
-import { carsMockId } from '../../mock/carMock';
+import { carMock, carsMock, carsMockId } from '../../mock/carMock';
 import { Request, Response } from 'express';
 const { expect } = chai;
 
@@ -16,6 +16,9 @@ describe('Unit test for Car Service', () => {
     sinon
       .stub(carModel, 'read')
       .resolves(carsMockId);
+    sinon
+      .stub(carModel, 'readOne')
+      .resolves(carMock);
   });
 
   after(()=>{
@@ -27,5 +30,10 @@ describe('Unit test for Car Service', () => {
     expect(cars).to.be.an('array');
     expect(cars).to.be.equal(carsMockId);
   });
+  // carMock incorrect
+  /* it('Test if readOne method returns ICar', async () => {
+    const car = await carService.readOne('1');
+    expect(car).to.be.equal(carMock);
+  }); */
 
 });
